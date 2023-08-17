@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Mulish:ital,wght@0,400;0,700;0,900;1,800&family=Oswald:wght@600&family=Poppins:wght@300;600&family=Roboto+Mono:ital,wght@0,600;1,400&family=Roboto+Slab:wght@300&family=Roboto:wght@500&family=Urbanist:ital@1&display=swap');
+#root {
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  align-items: center;
+}
+.notactive{
+  background-color: grey;
+}
+.stepactive{
+  background-color: #1e88e5;
+}
+.stepactive:hover{
+  background: rgb(30,136,229);
+  background: linear-gradient(90deg, rgba(30,136,229,1) 0%, rgba(124,183,209,1) 47%);
+}
