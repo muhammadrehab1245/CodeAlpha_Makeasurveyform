@@ -5,7 +5,6 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
     const { email } = req.body;
    console.log(surveying)
-   console.log('aa')
     console.log('req.body', req.body);
    
     let user = await surveying.findOne({ email });
