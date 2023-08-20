@@ -57,6 +57,10 @@ const surveyschema = mongoose.Schema(
         type: String,
         required:true,
       },
+      captcha: {
+        type: String,
+        required:true,
+      },
    
     }
   );

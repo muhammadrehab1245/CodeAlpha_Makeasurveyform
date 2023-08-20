@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { useForm, Controller } from "react-hook-form"
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
@@ -6,13 +6,16 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Grid, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { BASE_API_URL } from '../utils/Constant';
+import ReCAPTCHA from "react-google-recaptcha";
 import axios from 'axios';
 import Notecontext from '../context/Notecontext';
 export const Formlast = (props) => {
     const navigate = useNavigate()
+    const captcharef = useRef();
+    const [captcha, setcaptcha] = useState('')
     const {showalert}=props
     const context=useContext(Notecontext)
     let {user,resetUser,radioValue, updateRadioValue}=context
@@ -27,11 +30,15 @@ export const Formlast = (props) => {
     const handleChange = (event) => {
       updateRadioValue(event.target.value);
     };
+    const onChange=(value)=>{
+      setcaptcha(value)
+    }
   const onSubmit = async (data) => {
     try {
       await axios.post(`${BASE_API_URL}/register`, {
         ...user,
-        ...data
+        ...data,
+        captcha
       });
       resetUser()
       showalert('Form filled successfully','success')
@@ -106,9 +113,17 @@ export const Formlast = (props) => {
            rows={7}
          />
           {errors.reasonsatisfy && <Typography color='red'>{errors.reasonsatisfy.message}</Typography>}
+ <Stack alignItems='center' pt={5}>
+          <ReCAPTCHA
+        ref={captcharef}
+        sitekey="6LeAlbwnAAAAAAIlyQefDtaZXugRbs6glRfNFto5"
+        onChange={onChange}
+        />
+        </Stack>
+ 
  <Grid mt={2}> 
  
- <Button  sx={{backgroundColor:'#1e88e5'}}  type="submit" variant="contained" size="small">
+ <Button disabled={captcha===''}  sx={{backgroundColor:'#1e88e5'}}  type="submit" variant="contained" size="small">
     Submit
   </Button>
  </Grid>
