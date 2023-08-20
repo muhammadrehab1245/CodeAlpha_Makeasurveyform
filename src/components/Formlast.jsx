@@ -27,7 +27,7 @@ export const Formlast = (props) => {
     const handleChange = (event) => {
       updateRadioValue(event.target.value);
     };
-console.log('aaaa')
+console.log('abb') 
   const onSubmit = async (data) => {
     try {
       await axios.post(`${BASE_API_URL}/register`, {
