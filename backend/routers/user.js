@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const surveying=require('../models/usersurvey')
 const router = express.Router();
-const secretkey='6LeAlbwnAAAAAECmBogGKSecbcxPYjNgZNU-Nmh7'
+const secretkey=''
 router.post('/register', async (req, res) => {
     const { email,captcha } = req.body;
     axios({url: `https://www.google.com/recaptcha/api/siteverify?secret=${secretkey}&response=${captcha}`, 
